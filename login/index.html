@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>等价类划分</title>
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+				background-color: gainsboro;
+			}
+
+			hr {
+				margin: 74px;
+			}
+
+			div {
+				width: 500;
+				height: 300;
+				margin: auto;
+				background-color: aliceblue;
+			}
+		</style>
+	</head>
+	<body>
+		<hr>
+		<div id="">
+			<fieldset id="">
+				<legend align="center">欢迎注册</legend>
+				<table align="center">
+					<tr>
+						<td><label for="ip1">请输入账号</label></td>
+						<td><input type="text" name="ip1" id="ip1" placeholder="请设置账号名称" />
+							
+							</td>
+					</tr>
+					<tr>
+						<td><label for="ip2">请输入密码</label></td>
+						<td><input type="password" name="ip2" id="ip2" placeholder="请设置密码" /></td>
+					</tr>
+					<tr>
+						<!-- <td><button id="btn1">注册</button></td> -->
+						
+						<td>
+							<input type="button" name="" id="btn1" value="注册" />
+							<button id="btn2">登录</button>
+							</td>
+					</tr>
+				</table>
+		</div>
+		</fieldset>
+		
+	</body>
+</html>
+<!-- <script src="login.js"></script> -->
+
+<script >
+	//同步检测
+	//当点击button按钮，提示账号是否符合约束条件
+	var btn = document.getElementById("btn1");
+	btn.onclick = function (){
+		//条件1：5-20个
+		//第一步：获取输入框的用户输入信息
+		var value = document.getElementById("ip1").value;
+		// alert(value);
+		//第二步：给用户输入信息加条件显示，不少于5个，不多于20个	
+		//正则表达式
+		var reg =  /^[a-zA-Z0-9_]{5,20}$/;
+		//var arr=value.match(reg);
+		var result = reg.test(value);
+		console.log(result)
+	};
+</script>
+<!-- 测试用例 预期结果
+TC1 abc（false）
+TC2 zhangsan（true）
+TC3 01234567890123456789（true）
+TC4 012345678901234567890 （true） 
+TC5 12345(true)
+TC6 ??????(false)
+单故障
+-->
+<!-- 
+ 测试字符取值范围有效等价类和无效等价类
+	预期结果                           实际结果
+ TC1 abcde(true)                   true
+ TC2 ABCDE(true)                   true 
+ TC3 ______(Ttrue)                 true
+ TC4 ABcdl1_(ture)                 true
+ TC5 ??????(false)                 false
+ TC6 ******(false)                 false
+ TC7 五个空格（false）              false
+ TC8     1bcde(false)              false
+ TC9      zhangsan    (true)      false
+ 
+ -->
